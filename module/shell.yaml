@@ -1,0 +1,16 @@
+---
+- hosts: master
+  gather_facts: False
+
+tasks:
+  - name: star yarn
+    become: true
+    become_user: hdoop
+    environment:
+      HADOOP_HOME: "{{ hadoop_home }}"
+      HADOOP_HDFS_HOME: "{{ hadoop_home }}"
+      HADOOP_CONF_DIR: "{{ hadoop_home }}/etc/hadoop"
+      HADOOP_YARN_HOME: "{{ hadoop_home }}"
+    shell: 
+      cmd: "{{ hadoop_home }}/sbin/start-yarn.sh"
+      executable: /bin/bash
